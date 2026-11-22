@@ -385,3 +385,117 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .career-banner { align-items: flex-start; flex-direction: column; }
   .page-hero { background: #f0f5fa; }
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --background: #0b1716;
+    --foreground: #e5f1ef;
+    --card: #132321;
+    --card-foreground: #e5f1ef;
+    --popover: #132321;
+    --popover-foreground: #e5f1ef;
+    --primary: #00ad9d;
+    --primary-foreground: #06221f;
+    --secondary: #183330;
+    --secondary-foreground: #c5e4df;
+    --muted: #142321;
+    --muted-foreground: #a1b7b3;
+    --accent: #00ad9d;
+    --accent-foreground: #06221f;
+    --border: #29413d;
+    --input: #29413d;
+    --ring: #00ad9d;
+    --sidebar: #0b1716;
+    --sidebar-foreground: #e5f1ef;
+    --sidebar-primary: #00ad9d;
+    --sidebar-primary-foreground: #06221f;
+    --sidebar-accent: #183330;
+    --sidebar-accent-foreground: #c5e4df;
+    --sidebar-border: #29413d;
+    --sidebar-ring: #00ad9d;
+  }
+
+  body { background: #0b1716; color: #e5f1ef; }
+  ::selection { color: #06221f; background: #00ad9d; }
+  .site-header { background: #0d1d1b; border-color: #203734; }
+  .site-header .brand img { filter: brightness(2.5) saturate(1.2); }
+  .main-nav { color: #b3c5c1; }
+  .main-nav > a:hover, .brand-copy strong, .display-heading,
+  .section-heading h2, .text-link, .intro-stamp strong, .career-banner h2,
+  .vision-grid h2, .service-count, .contact-details > a strong { color: #e5f1ef; }
+  .brand-copy small, .section-heading > p, .intro-copy > p, .why-copy > p,
+  .body-copy, .vision-grid p, .service-count small, .career-banner p,
+  .contact-details > a small { color: #a1b7b3; }
+  .header-cta, .footer-contact-cta, .button-primary, .mobile-nav-cta { background: #00ad9d; color: #06221f; }
+  .header-cta:hover, .footer-contact-cta:hover, .button-primary:hover { background: #21c2b2; }
+  .header-socials a { color: #8bded4; background: #183330; }
+  .header-socials a:hover { color: #06221f; background: #00ad9d; }
+  .menu-toggle { color: #8bded4; border-color: #29413d; }
+  .main-nav.is-open { background: #0d1d1b; border-color: #29413d; }
+  .main-nav > a:not(.mobile-nav-cta) { border-color: #203734; }
+  .hero { color: #e5f1ef; background: #0b1716; }
+  .hero h1, .hero-note, .hero-note strong, .hero-link { color: #e5f1ef; }
+  .hero h1 em, .hero-proof svg, .hero-note > svg, .hero-index { color: #00c0ae; }
+  .hero-copy > p, .hero-proof { color: #b3c5c1; }
+  .hero-note { background: #132321; border-color: #29413d; }
+  .hero-note small { color: #a1b7b3; }
+  .button-lime { color: #06221f; background: #00ad9d; }
+  .button-lime:hover { background: #21c2b2; }
+  .button-outline { color: #8bded4; border-color: #3a625c; }
+  .button-outline:hover { border-color: #00ad9d; }
+  .eyebrow, .why-points { color: #9bc9c2; }
+  .eyebrow i, .why-points svg { background: #00ad9d; color: #00ad9d; }
+  .display-heading span { color: #6fcfc2; }
+  .intro-stamp { color: #9bc9c2; border-color: #29413d; }
+  .intro-stamp::before { border-color: #29413d; }
+  .services-section, .partners-section, .career-section, .vision-section { background: #101e1c; }
+  .service-card, .partner-category, .principle { color: #e5f1ef; background: #132321; border-color: #29413d; }
+  .service-card:hover { border-color: #00ad9d; box-shadow: 0 13px 34px rgba(0,0,0,.24); }
+  .service-card h3, .principle > strong { color: #d7e9e5; }
+  .service-card p, .partner-category p { color: #a1b7b3; }
+  .service-icon, .partner-category > span { color: #73d4c8; background: #1b3733; }
+  .service-number, .principle > span { color: #8aa7a1; }
+  .service-card > a { color: #8bded4; border-color: #35504b; }
+  .values-section, .contact-section, .inner-cta { background: #062d29; }
+  .why-section, .intro-section, .inner-section { background: #0b1716; }
+  .why-art { background: radial-gradient(circle at 50% 50%, #17332f 0 27%, #29413d 27.2% 27.8%, #132522 28% 48%, #29413d 48.2% 48.8%, #101e1c 49%); }
+  .art-ring { border-color: rgba(0,173,157,.3); }
+  .art-core { background: #00ad9d; color: #06221f; }
+  .art-core span { color: #06221f; }
+  .art-label, .partner-wordmarks span { color: #9bc9c2; }
+  .partner-wordmarks { border-color: #29413d; }
+  .partner-wordmarks span:nth-child(even) { color: #6fcfc2; }
+  .partners-note { color: #8aa7a1; }
+  .contact-form-wrap { color: #e5f1ef; background: #132321; }
+  .form-heading > svg { color: #00ad9d; }
+  .contact-form label { color: #c5d6d2; }
+  .contact-form label > span { color: #f0a68e; }
+  .contact-form input, .contact-form select, .contact-form textarea { color: #e5f1ef; background: #0b1716; border-color: #35504b; }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: #00ad9d; box-shadow: 0 0 0 3px rgba(0,173,157,.16); }
+  .contact-form input::placeholder, .contact-form textarea::placeholder, .select-chevron { color: #829a95; }
+  .form-bottom > span { color: #9bb0ab; }
+  .form-message { color: #83d5a0; }
+  .form-error { color: #ff9d91; }
+  .site-footer { background: #071310; }
+  .footer-contact svg { color: #00ad9d; }
+  .footer-hours .footer-contact-cta { color: #06221f; }
+  .page-hero { color: #e5f1ef; background: #101e1c; }
+  .page-hero h1 { color: #e5f1ef; }
+  .page-hero-inner > p, .breadcrumb { color: #a1b7b3; }
+  .breadcrumb a { color: #00c0ae; }
+  .page-hero-orbit { color: rgba(0,173,157,.08); border-color: rgba(0,173,157,.19); }
+  .page-hero-orbit::before, .page-hero-orbit::after { border-color: rgba(0,173,157,.14); }
+  .story-card { background: #062d29; }
+  .story-card-icon { color: #00c0ae; background: rgba(0,173,157,.14); }
+  .vision-grid article + article { border-color: #29413d; }
+  .principle > svg, .career-perks svg { color: #00ad9d; }
+  .career-perks { color: #b4d8d2; }
+  .contact-details > a { border-color: #29413d; }
+  .contact-details > a > span { color: #73d4c8; background: #183330; }
+  .contact-hours-card { background: #142724; }
+  .contact-hours-card span { color: #a1b7b3; }
+  .contact-hours-card strong { color: #d7e9e5; }
+  .contact-strip { background: #132321; color: #c5d6d2; }
+  .footer-bottom { border-color: rgba(255,255,255,.12); }
+}
