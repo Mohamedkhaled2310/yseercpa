@@ -1,10 +1,12 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Noto_Sans_Arabic } from 'next/font/google'
+import { IBM_Plex_Sans_Arabic, Inter } from 'next/font/google'
+import { LanguageProvider } from '@/components/language-provider'
+import { SiteFooter, SiteHeader } from '@/components/site'
 import './globals.css'
 
-const arabicFont = Noto_Sans_Arabic({ subsets: ['arabic'], display: 'swap', variable: '--font-arabic' })
-import { SiteFooter, SiteHeader } from '@/components/site'
+const arabicFont = IBM_Plex_Sans_Arabic({ subsets: ['arabic'], weight: ['400', '500', '600', '700'], display: 'swap', variable: '--font-arabic' })
+const englishFont = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-english' })
 
 export const metadata: Metadata = {
   title: {
@@ -43,8 +45,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  colorScheme: 'light',
-  themeColor: '#f8f8f5',
+  colorScheme: 'light dark',
+  themeColor: '#023632',
 }
 
 export default function RootLayout({
@@ -54,11 +56,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={`${arabicFont.variable} antialiased`}>
-        <SiteHeader />
-        {children}
-        <SiteFooter />
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+      <body className={`${arabicFont.variable} ${englishFont.variable} antialiased`}>
+        <LanguageProvider>
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+          {process.env.NODE_ENV === 'production' && <Analytics />}
+        </LanguageProvider>
       </body>
     </html>
   )
