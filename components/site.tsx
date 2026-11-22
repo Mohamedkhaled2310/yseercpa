@@ -1,17 +1,34 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import { ArrowLeft, ArrowUpLeft, BadgeCheck, BarChart3, BookOpenCheck, Building2, Check, ChevronDown, Clock3, FileCheck2, FileText, Landmark, Mail, MapPin, Menu, Phone, ShieldCheck, Sparkles, Users, X } from "lucide-react"
+import { ArrowLeft, BadgeCheck, BarChart3, BookOpenCheck, Building2, Check, ChevronDown, Clock3, FileCheck2, FileText, Camera, Landmark, Mail, MapPin, Menu, MessageCircle, Phone, ShieldCheck, Sparkles, Users, X } from "lucide-react"
 
 export const navItems = [
   { label: "الرئيسية", href: "/" },
-  { label: "عن يسير", href: "/من-نحن" },
-  { label: "خدماتنا", href: "/خدماتنا" },
-  { label: "شركاؤنا", href: "/شركاؤنا" },
+  { label: "عن يسير", href: "/#about" },
+  { label: "خدماتنا", href: "/#services" },
+  { label: "شركاؤنا", href: "/#partners" },
   { label: "التوظيف", href: "/توظيف" },
-  { label: "تواصل معنا", href: "/تواصل-معنا" },
+  { label: "تواصل معنا", href: "/#contact" },
 ]
+
+const socialLinks = [
+  { label: "واتساب", href: "https://iwtsp.com/966537177706", icon: MessageCircle },
+  { label: "لينكدإن", href: "https://www.linkedin.com/company/yseer-cpa/", icon: Users },
+  { label: "إنستغرام", href: "https://www.instagram.com/yseercpa?igsh=MTR0dnZpNHBrcm4xdg==", icon: Camera },
+  { label: "إكس", href: "https://x.com/yseercpa?s=21", icon: X },
+]
+
+function navigateToHomeSection(event: React.MouseEvent<HTMLAnchorElement>, href: string) {
+  if (!href.startsWith("/#") || window.location.pathname !== "/") return
+  const target = document.getElementById(href.slice(2))
+  if (!target) return
+  event.preventDefault()
+  window.history.pushState(null, "", href)
+  target.scrollIntoView({ behavior: "smooth", block: "start" })
+}
 
 export const services = [
   { number: "01", title: "التأسيس المالي", description: "نؤسس منظومة مالية متكاملة تبدأ من شجرة حسابات مدروسة، وتمتد إلى إجراءات واضحة وتدريب عملي لفريقك.", icon: Landmark },
@@ -27,15 +44,15 @@ export const services = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
   return <header className="site-header"><div className="container header-inner">
-    <Link className="brand" href="/" aria-label="يسير - الصفحة الرئيسية"><span className="brand-mark">ي</span><span className="brand-copy"><strong>يسير</strong><small>للاستشارات المهنية</small></span></Link>
-    <nav className={open ? "main-nav is-open" : "main-nav"} aria-label="القائمة الرئيسية">{navItems.map((item) => <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>{item.label}</Link>)}<Link className="mobile-nav-cta" href="/تواصل-معنا" onClick={() => setOpen(false)}>اطلب استشارة <ArrowLeft size={16}/></Link></nav>
-    <Link className="header-cta" href="/تواصل-معنا">خلّنا نتحدث <ArrowLeft size={16}/></Link>
+    <Link className="brand" href="/" aria-label="يسير للاستشارات المهنية - الصفحة الرئيسية"><Image src="/yseer-logo.png" alt="يسير للاستشارات المهنية" width={170} height={64} priority/></Link>
+    <nav className={open ? "main-nav is-open" : "main-nav"} aria-label="القائمة الرئيسية">{navItems.map((item) => <Link key={item.href} href={item.href} onClick={(event) => { setOpen(false); navigateToHomeSection(event, item.href) }}>{item.label}</Link>)}<Link className="mobile-nav-cta" href="/#contact" onClick={(event) => { setOpen(false); navigateToHomeSection(event, "/#contact") }}>اطلب استشارة <ArrowLeft size={16}/></Link></nav>
+    <div className="header-socials" aria-label="حسابات يسير الاجتماعية">{socialLinks.map(({ label, href, icon: Icon }) => <a key={label} href={href} aria-label={label} target="_blank" rel="noreferrer"><Icon size={17}/></a>)}</div>
     <button className="menu-toggle" aria-label={open ? "إغلاق القائمة" : "فتح القائمة"} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X/> : <Menu/>}</button>
   </div></header>
 }
 
 export function SiteFooter() {
-  return <footer className="site-footer"><div className="container"><div className="footer-top"><div className="footer-brand"><Link className="brand brand-light" href="/"><span className="brand-mark">ي</span><span className="brand-copy"><strong>يسير</strong><small>للاستشارات المهنية</small></span></Link><p>وضوح في الأرقام، وثقة في كل قرار. شريكك المهني لنمو مالي مستدام.</p></div><div className="footer-links"><h3>روابط سريعة</h3>{navItems.slice(1).map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}</div><div className="footer-contact"><h3>يسعدنا تواصلك</h3><a href="tel:920031899"><Phone size={17}/> 920031899</a><a href="tel:+966537177706"><Phone size={17}/> +966 53 717 7706</a><a href="mailto:info@yseercpa.sa"><Mail size={17}/> info@yseercpa.sa</a><span><MapPin size={17}/> القصيم، بريدة</span></div><div className="footer-hours"><h3>أوقات العمل</h3><p>الأحد – الخميس</p><p>8:00 ص – 4:00 م</p><Link className="footer-contact-cta" href="/تواصل-معنا">اطلب عرض سعر <ArrowLeft size={16}/></Link></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} يسير للاستشارات المهنية. جميع الحقوق محفوظة.</span><span>نصنع وضوحًا ماليًا يدوم.</span></div></div></footer>
+  return <footer className="site-footer"><div className="container"><div className="footer-top"><div className="footer-brand"><Link className="brand brand-light" href="/" aria-label="يسير للاستشارات المهنية"><Image src="/yseer-logo.png" alt="يسير للاستشارات المهنية" width={170} height={64}/></Link><p>وضوح في الأرقام، وثقة في كل قرار. شريكك المهني لنمو مالي مستدام.</p></div><div className="footer-links"><h3>روابط سريعة</h3>{navItems.slice(1).map((item) => <Link key={item.href} href={item.href} onClick={(event) => navigateToHomeSection(event, item.href)}>{item.label}</Link>)}</div><div className="footer-contact"><h3>يسعدنا تواصلك</h3><a href="tel:920031899"><Phone size={17}/> 920031899</a><a href="tel:+966537177706"><Phone size={17}/> +966 53 717 7706</a><a href="mailto:info@yseercpa.sa"><Mail size={17}/> info@yseercpa.sa</a><span><MapPin size={17}/> القصيم، بريدة</span></div><div className="footer-hours"><h3>أوقات العمل</h3><p>الأحد – الخميس</p><p>8:00 ص – 4:00 م</p><Link className="footer-contact-cta" href="/#contact" onClick={(event) => navigateToHomeSection(event, "/#contact")}>اطلب عرض سعر <ArrowLeft size={16}/></Link></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} يسير للاستشارات المهنية. جميع الحقوق محفوظة.</span><span>نصنع وضوحًا ماليًا يدوم.</span></div></div></footer>
 }
 
 export function SectionHeading({ eyebrow, title, description, light = false }: { eyebrow: string; title: string; description?: string; light?: boolean }) {
@@ -44,7 +61,7 @@ export function SectionHeading({ eyebrow, title, description, light = false }: {
 
 export function ServiceGrid({ compact = false }: { compact?: boolean }) {
   const list = compact ? services.slice(0, 4) : services
-  return <div className="services-grid">{list.map(({ number, title, description, icon: Icon }) => <article className="service-card" id={`service-${number}`} key={number}><div className="service-card-top"><span className="service-icon"><Icon size={21}/></span><span className="service-number">{number}</span></div><h3>{title}</h3><p>{description}</p><Link href={`/خدماتنا#service-${number}`} aria-label={`اكتشف خدمة ${title}`}><ArrowUpLeft size={19}/></Link></article>)}</div>
+  return <div className="services-grid">{list.map(({ number, title, description, icon: Icon }) => <article className="service-card" id={`service-${number}`} key={number}><div className="service-card-top"><span className="service-icon"><Icon size={21}/></span><span className="service-number">{number}</span></div><h3>{title}</h3><p>{description}</p><Link href={`/خدماتنا#service-${number}`} aria-label={`اكتشف خدمة ${title}`}><ArrowLeft size={19}/></Link></article>)}</div>
 }
 
 export function ContactForm({ hiring = false }: { hiring?: boolean }) {
