@@ -2,8 +2,8 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
-import { ArrowLeft, BadgeCheck, BarChart3, BookOpenCheck, Building2, Check, ChevronDown, Clock3, FileCheck2, FileText, Camera, Landmark, Mail, MapPin, Menu, MessageCircle, Phone, ShieldCheck, Sparkles, Users, X } from "lucide-react"
+import { useEffect, useState } from "react"
+import { ArrowLeft, BadgeCheck, BarChart3, BookOpenCheck, Building2, Check, ChevronDown, Clock3, FileCheck2, FileText, Camera, Landmark, Mail, MapPin, Menu, MessageCircle, Moon, Phone, ShieldCheck, Sparkles, Sun, Users, X } from "lucide-react"
 
 export const navItems = [
   { label: "الرئيسية", href: "/" },
@@ -43,10 +43,25 @@ export const services = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
+  const [theme, setTheme] = useState<"light" | "dark">("light")
+
+  useEffect(() => {
+    const initialTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+    document.documentElement.dataset.theme = initialTheme
+    setTheme(initialTheme)
+  }, [])
+
+  function toggleTheme() {
+    const nextTheme = theme === "dark" ? "light" : "dark"
+    document.documentElement.dataset.theme = nextTheme
+    setTheme(nextTheme)
+  }
+
   return <header className="site-header"><div className="container header-inner">
     <Link className="brand" href="/" aria-label="يسير للاستشارات المهنية - الصفحة الرئيسية"><Image src="/yseer-logo.png" alt="يسير للاستشارات المهنية" width={170} height={64} priority/></Link>
     <nav className={open ? "main-nav is-open" : "main-nav"} aria-label="القائمة الرئيسية">{navItems.map((item) => <Link key={item.href} href={item.href} onClick={(event) => { setOpen(false); navigateToHomeSection(event, item.href) }}>{item.label}</Link>)}<Link className="mobile-nav-cta" href="/#contact" onClick={(event) => { setOpen(false); navigateToHomeSection(event, "/#contact") }}>اطلب استشارة <ArrowLeft size={16}/></Link></nav>
     <div className="header-socials" aria-label="حسابات يسير الاجتماعية">{socialLinks.map(({ label, href, icon: Icon }) => <a key={label} href={href} aria-label={label} target="_blank" rel="noreferrer"><Icon size={17}/></a>)}</div>
+    <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={theme === "dark" ? "التبديل إلى الوضع الفاتح" : "التبديل إلى الوضع الداكن"} title={theme === "dark" ? "الوضع الفاتح" : "الوضع الداكن"}>{theme === "dark" ? <Sun size={19}/> : <Moon size={19}/>}</button>
     <button className="menu-toggle" aria-label={open ? "إغلاق القائمة" : "فتح القائمة"} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X/> : <Menu/>}</button>
   </div></header>
 }
