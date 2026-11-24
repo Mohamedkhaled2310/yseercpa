@@ -1603,45 +1603,244 @@ html[dir="ltr"] .btn-teal-primary:hover .btn-icon-shift {
 }
 
 /* =========================================================
-   Floating WhatsApp / Chat Button
+   Custom Service Select Input Styling
    ========================================================= */
-.floating-chat-btn {
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-trigger {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 1.5px solid #dce8e7;
+  border-radius: 8px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+  text-align: start;
+}
+
+.custom-select-trigger:focus-visible,
+.custom-select-trigger.is-open {
+  border-color: #00b7a6;
+  box-shadow: 0 0 0 3px rgba(0, 183, 166, 0.15);
+}
+
+.trigger-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.trigger-icon-box {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: #e5f2f0;
+  color: #00a899;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.trigger-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #183b39;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trigger-chevron {
+  color: #718078;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.custom-select-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  inset-inline: 0;
+  z-index: 60;
+  background: #ffffff;
+  border: 1px solid #dce8e7;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  padding: 6px;
+  margin: 0;
+  list-style: none;
+  max-height: 290px;
+  overflow-y: auto;
+  animation: selectOpenAnim 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes selectOpenAnim {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.custom-select-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: #183b39;
+}
+
+.custom-select-option:hover {
+  background: #f2f7f6;
+  color: #023632;
+}
+
+.custom-select-option.is-selected {
+  background: #e5f2f0;
+  color: #023632;
+  font-weight: 700;
+}
+
+.option-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.option-icon-box {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(0, 183, 166, 0.1);
+  color: #00a899;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.option-title {
+  font-size: 13.5px;
+}
+
+.option-check {
+  color: #00a899;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   Floating Official WhatsApp Button
+   ========================================================= */
+.floating-whatsapp-container {
   position: fixed;
   bottom: 24px;
   inset-inline-end: 24px;
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  background: #00b7a6;
-  color: #ffffff;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 8px 24px rgba(0, 183, 166, 0.35);
   z-index: 99;
-  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.floating-whatsapp-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.38);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  text-decoration: none;
   cursor: pointer;
 }
 
-.floating-chat-btn:hover {
-  transform: scale(1.1);
-  background: #023632;
+.floating-whatsapp-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 32px rgba(37, 211, 102, 0.52);
+  color: #ffffff;
 }
 
-.floating-chat-ping {
+.floating-whatsapp-icon {
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+.floating-whatsapp-label {
+  font-size: 13.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.floating-whatsapp-pulse {
   position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: #00b7a6;
-  opacity: 0.7;
-  animation: pingAnimation 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  inset: -3px;
+  border-radius: 9999px;
+  border: 2px solid #25D366;
+  animation: waRipple 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
   z-index: -1;
+  pointer-events: none;
 }
 
-@keyframes pingAnimation {
-  75%, 100% {
-    transform: scale(1.5);
+.floating-whatsapp-pulse.pulse-delay {
+  animation-delay: 1.2s;
+}
+
+@keyframes waRipple {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+  70% {
+    transform: scale(1.35);
     opacity: 0;
   }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .floating-whatsapp-btn {
+    padding: 0;
+    width: 54px;
+    height: 54px;
+    justify-content: center;
+  }
+  .floating-whatsapp-label {
+    display: none;
+  }
+  .floating-whatsapp-container {
+    bottom: 18px;
+    inset-inline-end: 18px;
+  }
+}
+
+/* =========================================================
+   Global Text Selection (::selection)
+   ========================================================= */
+::selection {
+  background-color: #00b7a6 !important;
+  color: #ffffff !important;
+}
+
+::-moz-selection {
+  background-color: #00b7a6 !important;
+  color: #ffffff !important;
 }
 
 .social-pill {
@@ -1915,4 +2114,51 @@ html[dir="ltr"] .btn-teal-primary:hover .btn-icon-shift {
 [data-theme="dark"] .social-pill:hover {
   background: #00b7a6;
   color: #023632;
+}
+
+
+/* Dark theme for Custom Select */
+[data-theme="dark"] .custom-select-trigger {
+  background: #0b1716;
+  border-color: #29413d;
+}
+
+[data-theme="dark"] .custom-select-trigger:focus-visible,
+[data-theme="dark"] .custom-select-trigger.is-open {
+  border-color: #00b7a6;
+  box-shadow: 0 0 0 3px rgba(0, 183, 166, 0.2);
+}
+
+[data-theme="dark"] .trigger-icon-box {
+  background: #183330;
+  color: #2dd4bf;
+}
+
+[data-theme="dark"] .trigger-label {
+  color: #e5f1ef;
+}
+
+[data-theme="dark"] .custom-select-dropdown {
+  background: #132321;
+  border-color: #29413d;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .custom-select-option {
+  color: #e5f1ef;
+}
+
+[data-theme="dark"] .custom-select-option:hover {
+  background: #183330;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .custom-select-option.is-selected {
+  background: #1b3733;
+  color: #2dd4bf;
+}
+
+[data-theme="dark"] .option-icon-box {
+  background: #183330;
+  color: #2dd4bf;
 }

@@ -46,6 +46,7 @@ import {
   LogoLamshNorah,
   LogoAlTabtabaei,
   SaudiProfileGraphic,
+  OfficialWhatsAppIcon,
 } from "@/components/icons"
 
 export const navItems = [
@@ -744,10 +745,96 @@ export function PartnersSection() {
   )
 }
 
+// Custom Styled Service Select Dropdown
+export function CustomServiceSelect({
+  value,
+  onChange,
+}: {
+  value: string
+  onChange: (val: string) => void
+}) {
+  const [open, setOpen] = useState(false)
+  const { language } = useLanguage()
+  const dropdownRef = React.useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpen(false)
+      }
+    }
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false)
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    document.addEventListener("keydown", handleKeyDown)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+      document.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [])
+
+  const currentService = services.find((s) => s.title === value) || services[0]
+  const CurrentIcon = currentService.icon
+
+  return (
+    <div className="custom-select-wrapper" ref={dropdownRef}>
+      <input type="hidden" name="service" value={value} />
+      <button
+        type="button"
+        className={`custom-select-trigger ${open ? "is-open" : ""}`}
+        onClick={() => setOpen(!open)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+      >
+        <span className="trigger-content">
+          <span className="trigger-icon-box">
+            <CurrentIcon size={18} />
+          </span>
+          <span className="trigger-label">{tx(language, currentService.title, currentService.titleEn)}</span>
+        </span>
+        <ChevronDown size={17} className={`trigger-chevron ${open ? "rotate-180" : ""}`} />
+      </button>
+
+      {open && (
+        <ul className="custom-select-dropdown" role="listbox">
+          {services.map((service) => {
+            const Icon = service.icon
+            const isSelected = service.title === value
+            return (
+              <li
+                key={service.number}
+                role="option"
+                aria-selected={isSelected}
+                className={`custom-select-option ${isSelected ? "is-selected" : ""}`}
+                onClick={() => {
+                  onChange(service.title)
+                  setOpen(false)
+                }}
+              >
+                <div className="option-inner">
+                  <span className="option-icon-box">
+                    <Icon size={18} />
+                  </span>
+                  <span className="option-title">
+                    {tx(language, service.title, service.titleEn)}
+                  </span>
+                </div>
+                {isSelected && <Check size={16} className="option-check text-[#00a899]" />}
+              </li>
+            )
+          })}
+        </ul>
+      )}
+    </div>
+  )
+}
+
 // Contact Us Section matching Screenshot 2
 export function ContactSection() {
   const { language } = useLanguage()
   const isAr = language === "ar"
+  const [selectedService, setSelectedService] = useState("التأسيس المالي")
   const [formSent, setFormSent] = useState(false)
   const [formError, setFormError] = useState("")
 
@@ -759,7 +846,7 @@ export function ContactSection() {
     const phone = String(form.get("phone") || "").trim()
     const email = String(form.get("email") || "").trim()
     const company = String(form.get("company") || "").trim()
-    const service = String(form.get("service") || "").trim()
+    const service = String(form.get("service") || selectedService || "التأسيس المالي").trim()
     const details = String(form.get("details") || "").trim()
 
     if (!firstName || !phone || !details) {
@@ -834,15 +921,8 @@ export function ContactSection() {
                     placeholder={tx(language, "اسم الشركة", "Company Name")}
                   />
                 </div>
-                <div className="form-field relative">
-                  <select name="service" defaultValue="التأسيس المالي" className="select-styled">
-                    {services.map((s) => (
-                      <option key={s.number} value={s.title}>
-                        {tx(language, s.title, s.titleEn)}
-                      </option>
-                    ))}
-                  </select>
-                  <ChevronDown size={16} className="select-chevron-icon" />
+                <div className="form-field">
+                  <CustomServiceSelect value={selectedService} onChange={setSelectedService} />
                 </div>
               </div>
 
@@ -895,8 +975,8 @@ export function ContactSection() {
                 rel="noreferrer"
                 className="contact-info-item hover:opacity-80 transition-opacity"
               >
-                <span className="contact-icon-bubble">
-                  <MessageCircle size={18} />
+                <span className="contact-icon-bubble bg-[#25D366]/10 text-[#25D366]">
+                  <OfficialWhatsAppIcon size={20} />
                 </span>
                 <span className="contact-info-text font-semibold" dir="ltr">
                   +966 53 717 7706
@@ -928,8 +1008,8 @@ export function ContactSection() {
             title={tx(language, "موقع يسير للاستشارات المهنية - بريدة، القصيم", "Yseer Location Map")}
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114446.40251147553!2d43.91689255!3d26.3592472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1581e18bf9776f87%3A0x6a05e2d19e99fb63!2sBuraydah%20Saudi%20Arabia!5e0!3m2!1sen!2ssa!4v1716500000000!5m2!1sen!2ssa"
             width="100%"
-            height="320"
-            style={{ border: 0, borderRadius: "12px" }}
+            height="290"
+            style={{ border: 0, borderRadius: "14px" }}
             allowFullScreen={false}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
@@ -940,22 +1020,28 @@ export function ContactSection() {
   )
 }
 
-// Floating WhatsApp / Chat Button (shown on mobile & desktop in bottom corner)
+// Floating Official WhatsApp Button (shown on mobile & desktop in bottom corner)
 export function FloatingChat() {
   const { language } = useLanguage()
 
   return (
-    <a
-      href="https://iwtsp.com/966537177706"
-      target="_blank"
-      rel="noreferrer"
-      className="floating-chat-btn"
-      aria-label={tx(language, "تواصل عبر واتساب", "Chat on WhatsApp")}
-      title={tx(language, "تحدث معنا عبر واتساب", "Chat with us on WhatsApp")}
-    >
-      <MessageCircle size={26} />
-      <span className="floating-chat-ping" />
-    </a>
+    <div className="floating-whatsapp-container">
+      <a
+        href="https://iwtsp.com/966537177706"
+        target="_blank"
+        rel="noreferrer"
+        className="floating-whatsapp-btn"
+        aria-label={tx(language, "تواصل عبر واتساب", "Chat on WhatsApp")}
+        title={tx(language, "تحدث معنا عبر واتساب", "Chat with us on WhatsApp")}
+      >
+        <span className="floating-whatsapp-pulse" />
+        <span className="floating-whatsapp-pulse pulse-delay" />
+        <OfficialWhatsAppIcon size={32} className="floating-whatsapp-icon" />
+        <span className="floating-whatsapp-label">
+          {tx(language, "تواصل معنا", "Chat with us")}
+        </span>
+      </a>
+    </div>
   )
 }
 
