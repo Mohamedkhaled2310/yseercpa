@@ -21,13 +21,13 @@ export const metadata: Metadata = {
     description: 'قرارات أقوى تبدأ من أرقام أوضح.',
     locale: 'ar_SA',
     type: 'website',
-    images: [{ url: '/yseer-logo.png', alt: 'شعار يسير للاستشارات المهنية' }],
+    images: [{ url: 'https://yseercpa.vercel.app/og-preview?v=2', width: 1200, height: 630, alt: 'شعار يسير للاستشارات المهنية' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'يسير للاستشارات المهنية',
     description: 'قرارات أقوى تبدأ من أرقام أوضح.',
-    images: [{ url: '/yseer-logo.png', alt: 'شعار يسير للاستشارات المهنية' }],
+    images: [{ url: 'https://yseercpa.vercel.app/og-preview?v=2', width: 1200, height: 630, alt: 'شعار يسير للاستشارات المهنية' }],
   },
   generator: 'Next.js',
   icons: {
