@@ -644,7 +644,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   border-color: var(--line);
 }
 
-:root:not([data-theme="dark"]) .brand-light .brand-arabic,
+:root:not([data-theme="dark"]) .brand-light .brand-arabic-script,
 :root:not([data-theme="dark"]) .brand-light .brand-english-symbol {
   filter: none;
 }
@@ -657,8 +657,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   background: #087f74;
 }
 
-:root[data-theme="dark"] .site-header .brand-arabic,
-:root[data-theme="dark"] .brand-light .brand-arabic {
+:root[data-theme="dark"] .site-header .brand-arabic-script,
+:root[data-theme="dark"] .brand-light .brand-arabic-script {
   filter: brightness(2.3) saturate(1.05);
 }
 
@@ -667,7 +667,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
   filter: none;
 }
 
-.brand img.brand-arabic { width: 148px; height: 56px; object-fit: contain; }
+.brand-arabic-lockup { display: inline-flex; align-items: center; gap: 8px; direction: ltr; }
+.brand-arabic-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 0; }
+.brand img.brand-arabic-script { width: 92px; height: 36px; object-fit: contain; }
 .brand-english { display: inline-flex; align-items: center; gap: 7px; color: var(--text-primary); }
 .brand-english-symbol { width: 37px !important; height: 34px !important; object-fit: contain; flex: 0 0 auto; }
 .brand-english-copy { display: flex; flex-direction: column; gap: 2px; line-height: 1.05; text-align: left; }
@@ -680,7 +682,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 :root[data-theme="dark"] .site-header .brand-english-copy small,
 :root[data-theme="dark"] .brand-light .brand-english-copy small { color: #a1b7b3; }
 @media (max-width: 760px) {
-  .brand img.brand-arabic { width: 130px; height: 48px; }
+  .brand img.brand-arabic-script { width: 82px; height: 32px; }
   .brand-english-symbol { width: 32px !important; height: 30px !important; }
   .brand-english-copy strong { font-size: 15px; }
   .brand-english-copy small { font-size: 7px; }
