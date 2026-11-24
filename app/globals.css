@@ -712,8 +712,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .brand-english-copy { display: flex; flex-direction: column; gap: 2px; line-height: 1.05; text-align: left; }
 .brand-english-copy strong { color: var(--text-primary); font-family: var(--font-english), Arial, sans-serif; font-size: 17px; letter-spacing: .11em; }
 .brand-english-copy small { color: var(--text-secondary); font-family: var(--font-english), Arial, sans-serif; font-size: 8px; letter-spacing: .015em; white-space: nowrap; }
-.brand-light .brand-english-copy strong { color: var(--text-primary); }
-.brand-light .brand-english-copy small { color: var(--text-secondary); }
+.brand-light .brand-english-copy strong { color: #ffffff !important; }
+.brand-light .brand-english-copy small { color: rgba(255, 255, 255, 0.72) !important; }
 :root[data-theme="dark"] .site-header .brand-english-copy strong,
 :root[data-theme="dark"] .brand-light .brand-english-copy strong { color: #e5f1ef; }
 :root[data-theme="dark"] .site-header .brand-english-copy small,

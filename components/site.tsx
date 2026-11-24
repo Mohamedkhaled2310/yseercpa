@@ -438,7 +438,60 @@ export function HeroSection() {
   )
 }
 
-// Stats Strip matching Screenshot 1
+// Animated Number Counter using Intersection Observer
+function AnimatedNumber({ value }: { value: string }) {
+  const numericPart = parseInt(value.replace(/[^0-9]/g, ""), 10) || 0
+  const suffix = value.replace(/[0-9]/g, "")
+  const [count, setCount] = useState(0)
+  const elementRef = React.useRef<HTMLSpanElement>(null)
+  const hasAnimated = React.useRef(false)
+
+  useEffect(() => {
+    const node = elementRef.current
+    if (!node) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true
+          const duration = 1800
+          const startTime = performance.now()
+
+          const updateCounter = (currentTime: number) => {
+            const elapsed = currentTime - startTime
+            const progress = Math.min(elapsed / duration, 1)
+            const easeOut = 1 - Math.pow(1 - progress, 3)
+            const currentCount = Math.floor(easeOut * numericPart)
+
+            setCount(currentCount)
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter)
+            } else {
+              setCount(numericPart)
+            }
+          }
+
+          requestAnimationFrame(updateCounter)
+        }
+      },
+      { threshold: 0.2 }
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [numericPart])
+
+  return (
+    <span ref={elementRef} className="stat-count-animated" dir="ltr">
+      {count}
+      {suffix}
+    </span>
+  )
+}
+
+// Stats Strip matching Screenshot 1 with animated counters
 export function StatsStrip() {
   const { language } = useLanguage()
 
@@ -453,7 +506,7 @@ export function StatsStrip() {
                 <Icon size={24} />
               </div>
               <strong className="stat-number" dir="ltr">
-                {stat.number}
+                <AnimatedNumber value={stat.number} />
               </strong>
               <span className="stat-label">
                 {tx(language, stat.labelAr, stat.labelEn)}
@@ -699,6 +752,13 @@ export function PartnersSection() {
   function prevSlide() {
     setActiveSlide((prev) => (prev - 1 + partners.length) % partners.length)
   }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % partners.length)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [partners.length])
 
   return (
     <section className="partners-carousel-section" id="partners">
