@@ -16,6 +16,7 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 html[lang="en"] body { font-family: var(--font-english), var(--font-arabic), Arial, sans-serif; }
 html[lang="en"] .hero h1, html[lang="en"] .display-heading, html[lang="en"] .section-heading h2, html[lang="en"] .page-hero h1 { letter-spacing: -.035em; }
 html[lang="en"] .hero-copy { width: min(1040px, 92%); }
+html[lang="en"] .hero-copy > p { max-width: 620px; }
 html[lang="en"] .hero h1 { max-width: 1040px; font-size: clamp(46px, 5vw, 62px); line-height: 1.16; }
 @media (max-width: 760px) {
   html[lang="en"] .hero-copy { width: 100%; }
