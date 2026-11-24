@@ -74,7 +74,7 @@ export const socialLinks = [
   {
     label: "واتساب",
     labelEn: "WhatsApp",
-    href: "https://iwtsp.com/966537177706",
+    href: "https://wa.me/966537177706",
     icon: ({ size = 16 }: { size?: number }) => (
       <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
@@ -970,7 +970,7 @@ export function ContactSection() {
               </a>
 
               <a
-                href="https://iwtsp.com/966537177706"
+                href="https://wa.me/966537177706"
                 target="_blank"
                 rel="noreferrer"
                 className="contact-info-item hover:opacity-80 transition-opacity"
@@ -1027,7 +1027,7 @@ export function FloatingChat() {
   return (
     <div className="floating-whatsapp-container">
       <a
-        href="https://iwtsp.com/966537177706"
+        href="https://wa.me/966537177706"
         target="_blank"
         rel="noreferrer"
         className="floating-whatsapp-btn"
