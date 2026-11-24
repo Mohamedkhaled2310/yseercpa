@@ -4,13 +4,14 @@ import Link from "next/link"
 import { ArrowLeft, Check, FileCheck2, Mail, MapPin, Phone, ShieldCheck, Sparkles, Users } from "lucide-react"
 import { ContactForm, PageHero, SectionHeading, ServiceGrid } from "@/components/site"
 import { useLanguage, tx } from "@/components/language-provider"
+import { localizedHref } from "@/lib/seo"
 
 const pages = ["من-نحن", "خدماتنا", "شركاؤنا", "تواصل-معنا", "توظيف"]
 
 export function InnerPageContent({ slug }: { slug: string }) {
   const { language } = useLanguage()
   const t = (ar: string, en: string) => tx(language, ar, en)
-  if (!pages.includes(slug)) return <main className="not-found"><span className="eyebrow"><i/> 404</span><h1>{t("الصفحة غير موجودة", "Page not found")}</h1><Link className="button button-primary" href="/">{t("العودة للرئيسية", "Back to home")} <ArrowLeft size={16}/></Link></main>
+  if (!pages.includes(slug)) return <main className="not-found"><span className="eyebrow"><i/> 404</span><h1>{t("الصفحة غير موجودة", "Page not found")}</h1><Link className="button button-primary" href={localizedHref("/", language)}>{t("العودة للرئيسية", "Back to home")} <ArrowLeft size={16}/></Link></main>
 
   if (slug === "من-نحن") return <>
     <PageHero eyebrow={t("عن يسير", "About Yseer")} title={t("نؤمن أن الوضوح يصنع فرقًا.", "We believe clarity makes a difference.")} description={t("يسير للاستشارات المهنية شريكك لبناء منظومة مالية أكثر كفاءة وموثوقية.", "Yseer Professional Consulting is your partner in building a more efficient and reliable financial function.")}/>
@@ -22,13 +23,13 @@ export function InnerPageContent({ slug }: { slug: string }) {
   if (slug === "خدماتنا") return <>
     <PageHero eyebrow={t("خدماتنا", "Our services")} title={t("خبرة مالية لكل مرحلة.", "Financial expertise for every stage.")} description={t("حلول عملية وواضحة تساعد منشأتك على بناء أساس مالي متين والنمو بثقة.", "Clear, practical solutions to build a strong financial foundation and grow with confidence.")}/>
     <section className="inner-section"><div className="container"><div className="section-top"><SectionHeading eyebrow={t("حلول يسير", "Yseer solutions")} title={t("اختر ما يناسب احتياجك.", "Find the right support for your needs.")} description={t("من تأسيس الأعمال إلى تعزيز الأداء، خدماتنا مصممة لتتكامل مع واقع منشأتك.", "From setting up your financial operations to strengthening performance, our services are designed around your business.")}/><span className="service-count">08 <small>{t("خدمات مهنية", "professional services")}</small></span></div><ServiceGrid/></div></section>
-    <section className="inner-cta"><div className="container inner-cta-row"><div><span className="eyebrow eyebrow-light"><i/> {t("لست متأكدًا من الخدمة؟", "Not sure what you need?")}</span><h2>{t("نساعدك تحدد البداية.", "We’ll help you find the right starting point.")}</h2></div><Link className="button button-lime" href="/#contact">{t("تحدث مع فريقنا", "Talk to our team")} <ArrowLeft size={17}/></Link></div></section>
+    <section className="inner-cta"><div className="container inner-cta-row"><div><span className="eyebrow eyebrow-light"><i/> {t("لست متأكدًا من الخدمة؟", "Not sure what you need?")}</span><h2>{t("نساعدك تحدد البداية.", "We’ll help you find the right starting point.")}</h2></div><Link className="button button-lime" href={localizedHref("/#contact", language)}>{t("تحدث مع فريقنا", "Talk to our team")} <ArrowLeft size={17}/></Link></div></section>
   </>
 
   if (slug === "شركاؤنا") return <>
     <PageHero eyebrow={t("شركاؤنا", "Our partners")} title={t("الثقة تُبنى معًا.", "Trust is built together.")} description={t("نؤمن بالشراكات المهنية القائمة على الوضوح والالتزام وتحقيق أثر يدوم.", "We believe in professional partnerships built on clarity, commitment and lasting impact.")}/>
     <section className="inner-section"><div className="container partners-page"><SectionHeading eyebrow={t("شركاء يسير", "Yseer partnerships")} title={t("علاقات نعتز بها.", "Relationships we value.")} description={t("نعمل مع منشآت وفرق من قطاعات متنوعة، ونبني كل علاقة على فهم الاحتياج وتقديم قيمة عملية.", "We work with organizations across industries, building every relationship on a clear understanding of needs and practical value.")}/><div className="partner-categories">{[{icon: Users, title: "منشآت نامية", titleEn: "Growing businesses", text: "دعم المنظومات المالية للمنشآت في مراحل نموها المختلفة.", textEn: "Supporting financial operations through every stage of business growth."}, {icon: FileCheck2, title: "جهات مهنية", titleEn: "Professional firms", text: "تعاون مبني على جودة العمل والالتزام بالمعايير.", textEn: "Collaboration grounded in quality and professional standards."}, {icon: Sparkles, title: "قطاعات متنوعة", titleEn: "Diverse industries", text: "فهم احتياجات متعددة بحلول مرنة ومناسبة.", textEn: "Flexible, relevant solutions shaped around diverse needs."}].map(({icon: Icon, title, titleEn, text, textEn}) => <article className="partner-category" key={title}><span><Icon/></span><h3>{t(title, titleEn)}</h3><p>{t(text, textEn)}</p></article>)}</div></div></section>
-    <section className="inner-cta"><div className="container inner-cta-row"><div><span className="eyebrow eyebrow-light"><i/> {t("انضم إلى شركائنا", "Become a partner")}</span><h2>{t("لنصنع أثرًا معًا.", "Let’s create lasting impact together.")}</h2></div><Link className="button button-lime" href="/#contact">{t("ابدأ التواصل", "Start a conversation")} <ArrowLeft size={17}/></Link></div></section>
+    <section className="inner-cta"><div className="container inner-cta-row"><div><span className="eyebrow eyebrow-light"><i/> {t("انضم إلى شركائنا", "Become a partner")}</span><h2>{t("لنصنع أثرًا معًا.", "Let’s create lasting impact together.")}</h2></div><Link className="button button-lime" href={localizedHref("/#contact", language)}>{t("ابدأ التواصل", "Start a conversation")} <ArrowLeft size={17}/></Link></div></section>
   </>
 
   if (slug === "توظيف") return <>
