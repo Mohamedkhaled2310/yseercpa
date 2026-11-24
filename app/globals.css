@@ -668,7 +668,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .brand-arabic-lockup { display: inline-flex; align-items: center; gap: 8px; direction: ltr; }
-.brand-arabic-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 0; }
 .brand img.brand-arabic-script { width: 92px; height: 36px; object-fit: contain; }
 .brand-english { display: inline-flex; align-items: center; gap: 7px; color: var(--text-primary); }
 .brand-english-symbol { width: 37px !important; height: 34px !important; object-fit: contain; flex: 0 0 auto; }
