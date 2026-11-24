@@ -219,6 +219,49 @@ export const standardsData = [
   { num: "7", textAr: "نبني علاقات طويلة الأمد قائمة على الثقة", textEn: "Building long-term relationships grounded in mutual trust" },
 ]
 
+// Brand Logo that switches dynamically between Arabic and English
+export function BrandLogo({ language, isFooter = false }: { language: "ar" | "en"; isFooter?: boolean }) {
+  if (language === "ar") {
+    return (
+      <span className={`brand-arabic-lockup ${isFooter ? "brand-arabic-footer" : ""}`} dir="ltr">
+        <Image
+          className="brand-arabic-script"
+          src="/yseer-arabic-script.png"
+          alt="يسير للاستشارات المهنية"
+          width={105}
+          height={40}
+          priority
+        />
+        <Image
+          className="brand-english-symbol"
+          src="/yseer-mark.png"
+          alt="شعار يسير"
+          width={38}
+          height={34}
+          priority
+        />
+      </span>
+    )
+  }
+
+  return (
+    <span className={`brand-english ${isFooter ? "brand-english-footer" : ""}`} dir="ltr">
+      <Image
+        className="brand-english-symbol"
+        src="/yseer-mark.png"
+        alt="Yseer Symbol"
+        width={38}
+        height={34}
+        priority
+      />
+      <span className="brand-english-copy">
+        <strong>YSEER</strong>
+        <small>Professional Consulting</small>
+      </span>
+    </span>
+  )
+}
+
 // Site Header with responsive menu, social icons, language toggle, and theme switch
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
@@ -248,13 +291,7 @@ export function SiteHeader() {
           href="/"
           aria-label={tx(language, "يسير للاستشارات المهنية - الصفحة الرئيسية", "Yseer Professional Consulting - Home")}
         >
-          <Image
-            src="/yseer-logo.png"
-            alt={tx(language, "يسير للاستشارات المهنية", "Yseer Professional Consulting")}
-            width={160}
-            height={60}
-            priority
-          />
+          <BrandLogo language={language} />
         </Link>
 
         {/* Social media icons on header as in screenshot */}
@@ -493,12 +530,31 @@ export function AboutSection() {
             </div>
           </div>
 
-          {/* Visual with Saudi profile and Arabic calligraphy watermark */}
+          {/* Visual with professional Saudi consultant photo and Arabic calligraphy watermark */}
           <div className="about-visual-column">
             <div className="about-calligraphy-watermark" aria-hidden="true">
               يسير
             </div>
-            <SaudiProfileGraphic className="about-profile-graphic" />
+            <div className="about-photo-wrapper">
+              <div className="about-photo-glow" />
+              <div className="about-photo-frame">
+                <Image
+                  src="/about-consultant.png"
+                  alt={tx(language, "مستشار مالي سعودي في يسير للاستشارات المهنية", "Saudi Financial Consultant at Yseer")}
+                  width={540}
+                  height={640}
+                  className="about-consultant-img"
+                  priority
+                />
+                <div className="about-photo-badge">
+                  <span className="badge-pulse-dot" />
+                  <div>
+                    <strong>{tx(language, "خبرة مهنية معتمدة", "Certified Expertise")}</strong>
+                    <small>{tx(language, "استشارات مالية وحلول محاسبية", "Financial Advisory & Accounting Solutions")}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -916,7 +972,7 @@ export function SiteFooter() {
               href="/"
               aria-label={tx(language, "يسير للاستشارات المهنية", "Yseer Professional Consulting")}
             >
-              <Image src="/yseer-logo.png" alt="يسير للاستشارات المهنية" width={160} height={60} />
+              <BrandLogo language={language} isFooter />
             </Link>
             <p>
               {tx(

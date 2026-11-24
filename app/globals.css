@@ -572,7 +572,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 :root:not([data-theme="dark"]) .values-section,
 :root:not([data-theme="dark"]) .contact-section,
-:root:not([data-theme="dark"]) .site-footer,
 :root:not([data-theme="dark"]) .inner-cta,
 :root:not([data-theme="dark"]) .story-card {
   color: var(--text-primary);
@@ -628,26 +627,64 @@ button, a { -webkit-tap-highlight-color: transparent; }
   background: var(--surface-highlight);
 }
 
-:root:not([data-theme="dark"]) .site-footer .footer-top h3 {
-  color: var(--text-primary);
+.site-footer {
+  padding: 60px 0 24px;
+  color: #ffffff !important;
+  background-color: #023632 !important;
 }
 
-:root:not([data-theme="dark"]) .site-footer .footer-links a,
-:root:not([data-theme="dark"]) .site-footer .footer-contact a,
-:root:not([data-theme="dark"]) .site-footer .footer-contact span,
-:root:not([data-theme="dark"]) .site-footer .footer-hours p,
-:root:not([data-theme="dark"]) .site-footer .footer-brand > p,
-:root:not([data-theme="dark"]) .site-footer .footer-bottom {
-  color: var(--text-secondary);
+:root[data-theme="dark"] .site-footer {
+  background-color: #071310 !important;
 }
 
-:root:not([data-theme="dark"]) .site-footer .footer-bottom {
-  border-color: var(--line);
+.site-footer .footer-top h3 {
+  color: #ffffff !important;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 16px;
 }
 
-:root:not([data-theme="dark"]) .brand-light .brand-arabic-script,
-:root:not([data-theme="dark"]) .brand-light .brand-english-symbol {
-  filter: none;
+.site-footer .footer-brand > p {
+  color: rgba(255, 255, 255, 0.72) !important;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.site-footer .footer-links a,
+.site-footer .footer-contact a,
+.site-footer .footer-contact span,
+.site-footer .footer-hours p {
+  color: rgba(255, 255, 255, 0.72) !important;
+  font-size: 13px;
+  transition: color 0.2s ease;
+}
+
+.site-footer .footer-links a:hover,
+.site-footer .footer-contact a:hover {
+  color: #00b7a6 !important;
+}
+
+.site-footer .footer-contact svg {
+  color: #00b7a6 !important;
+}
+
+.site-footer .footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+  padding-top: 20px;
+  margin-top: 36px;
+}
+
+.brand-light .brand-arabic-script {
+  filter: brightness(0) invert(1) !important;
+}
+
+.brand-light .brand-english-copy strong {
+  color: #ffffff !important;
+}
+
+.brand-light .brand-english-copy small {
+  color: rgba(255, 255, 255, 0.7) !important;
 }
 
 :root:not([data-theme="dark"]) .button-primary,
@@ -1040,22 +1077,111 @@ html[dir="ltr"] .btn-teal-primary:hover .btn-icon-shift {
 
 .about-calligraphy-watermark {
   position: absolute;
-  top: -40px;
-  inset-inline-start: -20px;
-  font-size: 160px;
+  top: -30px;
+  inset-inline-start: -15px;
+  font-size: 150px;
   font-weight: 900;
-  color: rgba(2, 54, 50, 0.05);
+  color: rgba(0, 183, 166, 0.05);
   pointer-events: none;
   user-select: none;
   line-height: 1;
   font-family: var(--font-arabic), serif;
+  z-index: 0;
 }
 
-.about-profile-graphic {
+.about-photo-wrapper {
+  position: relative;
   width: 100%;
-  max-width: 360px;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.about-photo-glow {
+  position: absolute;
+  inset: -14px;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 183, 166, 0.22) 0%, rgba(2, 54, 50, 0) 70%);
+  border-radius: 28px;
+  z-index: 0;
+  animation: glowSweep 5s ease-in-out infinite alternate;
+}
+
+@keyframes glowSweep {
+  0% { transform: scale(0.96); opacity: 0.7; }
+  100% { transform: scale(1.04); opacity: 1; }
+}
+
+.about-photo-frame {
+  position: relative;
+  z-index: 1;
   border-radius: 20px;
-  filter: drop-shadow(0 15px 30px rgba(0, 183, 166, 0.12));
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(2, 54, 50, 0.14), 0 0 0 1px rgba(0, 183, 166, 0.25);
+  background: #023632;
+  animation: floatPhoto 6s ease-in-out infinite;
+}
+
+@keyframes floatPhoto {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+.about-consultant-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 540 / 640;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-photo-frame:hover .about-consultant-img {
+  transform: scale(1.03);
+}
+
+.about-photo-badge {
+  position: absolute;
+  bottom: 14px;
+  inset-inline: 14px;
+  background: rgba(2, 54, 50, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+.badge-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00b7a6;
+  box-shadow: 0 0 0 0 rgba(0, 183, 166, 0.7);
+  animation: badgePulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes badgePulse {
+  0% { box-shadow: 0 0 0 0 rgba(0, 183, 166, 0.7); }
+  70% { box-shadow: 0 0 0 7px rgba(0, 183, 166, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 183, 166, 0); }
+}
+
+.about-photo-badge strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.about-photo-badge small {
+  display: block;
+  font-size: 10.5px;
+  color: #85bcb6;
+  margin-top: 1px;
 }
 
 /* =========================================================
@@ -1323,7 +1449,7 @@ html[dir="ltr"] .btn-teal-primary:hover .btn-icon-shift {
    Contact Modern Section (Screenshot 2)
    ========================================================= */
 .contact-modern-section {
-  padding: 85px 0 100px;
+  padding: 70px 0 35px;
   background-color: #f7faf9;
 }
 
@@ -1332,7 +1458,7 @@ html[dir="ltr"] .btn-teal-primary:hover .btn-icon-shift {
   grid-template-columns: 1.15fr 0.85fr;
   gap: 40px;
   align-items: flex-start;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 
 .contact-form-card {
@@ -1464,8 +1590,16 @@ html[dir="ltr"] .btn-teal-primary:hover .btn-icon-shift {
 
 .contact-map-wrapper {
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  margin-top: 16px;
+  margin-bottom: 0px;
+}
+
+.contact-map-wrapper iframe {
+  display: block;
+  width: 100%;
+  height: 290px;
 }
 
 /* =========================================================
@@ -1621,6 +1755,21 @@ html[dir="ltr"] .btn-teal-primary:hover .btn-icon-shift {
   }
   .contact-form-card {
     padding: 20px 16px;
+  }
+  .contact-modern-section {
+    padding: 36px 0 20px;
+  }
+  .contact-split-grid {
+    margin-bottom: 16px;
+  }
+  .contact-map-wrapper {
+    margin-top: 14px;
+  }
+  .contact-map-wrapper iframe {
+    height: 220px;
+  }
+  .about-photo-wrapper {
+    max-width: 320px;
   }
   .floating-chat-btn {
     bottom: 18px;
