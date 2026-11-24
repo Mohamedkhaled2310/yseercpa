@@ -16,6 +16,7 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 html[lang="en"] body { font-family: var(--font-english), var(--font-arabic), Arial, sans-serif; }
 html[lang="en"] .hero h1, html[lang="en"] .display-heading, html[lang="en"] .section-heading h2, html[lang="en"] .page-hero h1 { letter-spacing: -.035em; }
 html[lang="en"] .hero-copy { width: min(1040px, 92%); }
+html[lang="en"] .hero-copy > p { max-width: 620px; }
 html[lang="en"] .hero h1 { max-width: 1040px; font-size: clamp(46px, 5vw, 62px); line-height: 1.16; }
 @media (max-width: 760px) {
   html[lang="en"] .hero-copy { width: 100%; }
@@ -545,4 +546,144 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .contact-hours-card strong { color: #d7e9e5; }
   .contact-strip { background: #132321; color: #c5d6d2; }
   .footer-bottom { border-color: rgba(255,255,255,.12); }
+}
+
+:root {
+  --brand-deep: #063f3a;
+  --brand-accent: #0b9b8c;
+  --text-primary: #183b39;
+  --text-secondary: #5d716e;
+  --surface: #ffffff;
+  --surface-soft: #f3f8f6;
+  --surface-highlight: #e8f3f0;
+  --line: #dbe7e4;
+}
+
+:root[data-theme="dark"] {
+  --brand-deep: #0b2926;
+  --brand-accent: #43c8b7;
+  --text-primary: #e5f1ef;
+  --text-secondary: #a1b7b3;
+  --surface: #132321;
+  --surface-soft: #101e1c;
+  --surface-highlight: #183330;
+  --line: #29413d;
+}
+
+:root:not([data-theme="dark"]) .values-section,
+:root:not([data-theme="dark"]) .contact-section,
+:root:not([data-theme="dark"]) .site-footer,
+:root:not([data-theme="dark"]) .inner-cta,
+:root:not([data-theme="dark"]) .story-card {
+  color: var(--text-primary);
+  background: var(--surface-soft);
+}
+
+:root:not([data-theme="dark"]) .values-section .values-intro h2,
+:root:not([data-theme="dark"]) .contact-section .contact-copy h2,
+:root:not([data-theme="dark"]) .inner-cta h2,
+:root:not([data-theme="dark"]) .story-card > strong {
+  color: var(--text-primary);
+}
+
+:root:not([data-theme="dark"]) .values-section .values-intro h2 span,
+:root:not([data-theme="dark"]) .values-section .value-row svg,
+:root:not([data-theme="dark"]) .contact-section .contact-direct > a > span,
+:root:not([data-theme="dark"]) .contact-hours b,
+:root:not([data-theme="dark"]) .story-card-icon {
+  color: var(--brand-accent);
+}
+
+:root:not([data-theme="dark"]) .values-section .eyebrow-light,
+:root:not([data-theme="dark"]) .contact-section .eyebrow-light,
+:root:not([data-theme="dark"]) .values-section .values-intro > p,
+:root:not([data-theme="dark"]) .contact-section .contact-copy > p,
+:root:not([data-theme="dark"]) .contact-section .contact-direct small,
+:root:not([data-theme="dark"]) .contact-section .contact-hours,
+:root:not([data-theme="dark"]) .story-card > span:last-child {
+  color: var(--text-secondary);
+}
+
+:root:not([data-theme="dark"]) .values-section .eyebrow-light i,
+:root:not([data-theme="dark"]) .contact-section .eyebrow-light i {
+  background: var(--brand-accent);
+}
+
+:root:not([data-theme="dark"]) .values-section .values-list,
+:root:not([data-theme="dark"]) .values-section .value-row {
+  border-color: var(--line);
+}
+
+:root:not([data-theme="dark"]) .values-section .value-row span {
+  color: #64817b;
+}
+
+:root:not([data-theme="dark"]) .text-link-light,
+:root:not([data-theme="dark"]) .values-section .text-link-light {
+  color: var(--brand-deep);
+}
+
+:root:not([data-theme="dark"]) .contact-section .contact-direct > a > span,
+:root:not([data-theme="dark"]) .story-card-icon {
+  background: var(--surface-highlight);
+}
+
+:root:not([data-theme="dark"]) .site-footer .footer-top h3 {
+  color: var(--text-primary);
+}
+
+:root:not([data-theme="dark"]) .site-footer .footer-links a,
+:root:not([data-theme="dark"]) .site-footer .footer-contact a,
+:root:not([data-theme="dark"]) .site-footer .footer-contact span,
+:root:not([data-theme="dark"]) .site-footer .footer-hours p,
+:root:not([data-theme="dark"]) .site-footer .footer-brand > p,
+:root:not([data-theme="dark"]) .site-footer .footer-bottom {
+  color: var(--text-secondary);
+}
+
+:root:not([data-theme="dark"]) .site-footer .footer-bottom {
+  border-color: var(--line);
+}
+
+:root:not([data-theme="dark"]) .brand-light .brand-arabic-script,
+:root:not([data-theme="dark"]) .brand-light .brand-english-symbol {
+  filter: none;
+}
+
+:root:not([data-theme="dark"]) .button-primary,
+:root:not([data-theme="dark"]) .header-cta,
+:root:not([data-theme="dark"]) .footer-contact-cta,
+:root:not([data-theme="dark"]) .mobile-nav-cta {
+  color: #ffffff;
+  background: #087f74;
+}
+
+:root[data-theme="dark"] .site-header .brand-arabic-script,
+:root[data-theme="dark"] .brand-light .brand-arabic-script {
+  filter: brightness(2.3) saturate(1.05);
+}
+
+:root[data-theme="dark"] .site-header .brand-english-symbol,
+:root[data-theme="dark"] .brand-light .brand-english-symbol {
+  filter: none;
+}
+
+.brand-arabic-lockup { display: inline-flex; align-items: center; gap: 8px; direction: ltr; }
+.brand img.brand-arabic-script { width: 92px; height: 36px; object-fit: contain; }
+.brand-english { display: inline-flex; align-items: center; gap: 7px; color: var(--text-primary); }
+.brand-english-symbol { width: 37px !important; height: 34px !important; object-fit: contain; flex: 0 0 auto; }
+.brand-english-copy { display: flex; flex-direction: column; gap: 2px; line-height: 1.05; text-align: left; }
+.brand-english-copy strong { color: var(--text-primary); font-family: var(--font-english), Arial, sans-serif; font-size: 17px; letter-spacing: .11em; }
+.brand-english-copy small { color: var(--text-secondary); font-family: var(--font-english), Arial, sans-serif; font-size: 8px; letter-spacing: .015em; white-space: nowrap; }
+.brand-light .brand-english-copy strong { color: var(--text-primary); }
+.brand-light .brand-english-copy small { color: var(--text-secondary); }
+:root[data-theme="dark"] .site-header .brand-english-copy strong,
+:root[data-theme="dark"] .brand-light .brand-english-copy strong { color: #e5f1ef; }
+:root[data-theme="dark"] .site-header .brand-english-copy small,
+:root[data-theme="dark"] .brand-light .brand-english-copy small { color: #a1b7b3; }
+@media (max-width: 760px) {
+  .brand img.brand-arabic-script { width: 82px; height: 32px; }
+  .brand-english-symbol { width: 32px !important; height: 30px !important; }
+  .brand-english-copy strong { font-size: 15px; }
+  .brand-english-copy small { font-size: 7px; }
 }
