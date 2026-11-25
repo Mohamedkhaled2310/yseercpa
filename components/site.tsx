@@ -2,7 +2,9 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import React, { useEffect, useState } from "react"
+import { localizedHref } from "@/lib/seo"
 import {
   ArrowLeft,
   ArrowRight,
@@ -51,11 +53,11 @@ import {
 
 export const navItems = [
   { label: "الرئيسية", labelEn: "Home", href: "/" },
-  { label: "عن يسير", labelEn: "About", href: "/#about" },
-  { label: "خدماتنا", labelEn: "Services", href: "/#services" },
-  { label: "شركاؤنا", labelEn: "Partners", href: "/#partners" },
+  { label: "عن يسير", labelEn: "About", href: "/من-نحن" },
+  { label: "خدماتنا", labelEn: "Services", href: "/خدماتنا" },
+  { label: "شركاؤنا", labelEn: "Partners", href: "/شركاؤنا" },
   { label: "التوظيف", labelEn: "Careers", href: "/توظيف" },
-  { label: "تواصل معنا", labelEn: "Contact", href: "/#contact" },
+  { label: "تواصل معنا", labelEn: "Contact", href: "/تواصل-معنا" },
 ]
 
 export const socialLinks = [
@@ -268,6 +270,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false)
   const [theme, setTheme] = useState<"light" | "dark">("light")
   const { language, toggleLanguage } = useLanguage()
+  const pathname = usePathname() || "/"
 
   useEffect(() => {
     const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -289,7 +292,7 @@ export function SiteHeader() {
       <div className="container header-inner">
         <Link
           className="brand"
-          href="/"
+          href={localizedHref("/", language)}
           aria-label={tx(language, "يسير للاستشارات المهنية - الصفحة الرئيسية", "Yseer Professional Consulting - Home")}
         >
           <BrandLogo language={language} />
@@ -316,24 +319,33 @@ export function SiteHeader() {
           className={open ? "main-nav is-open" : "main-nav"}
           aria-label={tx(language, "القائمة الرئيسية", "Main navigation")}
         >
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={(event) => {
-                setOpen(false)
-                navigateToHomeSection(event, item.href)
-              }}
-            >
-              {tx(language, item.label, item.labelEn)}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const targetHref = localizedHref(item.href, language)
+            const isHome = item.href === "/"
+            const isActive = isHome
+              ? pathname === "/" || pathname === "/en"
+              : pathname === targetHref || pathname.startsWith(targetHref + "/")
+
+            return (
+              <Link
+                key={item.href}
+                href={targetHref}
+                className={isActive ? "is-active" : undefined}
+                onClick={(event) => {
+                  setOpen(false)
+                  navigateToHomeSection(event, targetHref)
+                }}
+              >
+                {tx(language, item.label, item.labelEn)}
+              </Link>
+            )
+          })}
           <Link
             className="mobile-nav-cta"
-            href="/#contact"
+            href={localizedHref("/تواصل-معنا", language)}
             onClick={(event) => {
               setOpen(false)
-              navigateToHomeSection(event, "/#contact")
+              navigateToHomeSection(event, localizedHref("/تواصل-معنا", language))
             }}
           >
             {tx(language, "اطلب عرض سعر", "Request a quote")}{" "}
@@ -400,14 +412,14 @@ export function HeroSection() {
           </p>
 
           <div className="hero-buttons">
-            <Link href="#services" className="btn-teal-primary group">
+            <Link href={localizedHref("/خدماتنا", language)} className="btn-teal-primary group">
               <span>{tx(language, "استكشف خدماتنا", "Explore Services")}</span>
               <span className="btn-icon-shift">
                 {isAr ? <ChevronLeft size={17} /> : <ChevronRight size={17} />}
               </span>
             </Link>
 
-            <Link href="#contact" className="btn-white-outline group">
+            <Link href={localizedHref("/تواصل-معنا", language)} className="btn-white-outline group">
               <span>{tx(language, "تواصل معنا", "Contact Us")}</span>
               <Phone size={16} className="text-[#00a899] transition-transform group-hover:scale-110" />
             </Link>
@@ -541,7 +553,7 @@ export function AboutSection() {
               )}
             </p>
 
-            <Link href="/من-نحن" className="btn-clean-outline">
+            <Link href={localizedHref("/من-نحن", language)} className="btn-clean-outline">
               <span>{tx(language, "تعرف علينا أكثر", "Learn More About Us")}</span>
               <FileText size={16} className="text-[#00a899]" />
             </Link>
@@ -1115,7 +1127,7 @@ export function SiteFooter() {
           <div className="footer-brand">
             <Link
               className="brand brand-light"
-              href="/"
+              href={localizedHref("/", language)}
               aria-label={tx(language, "يسير للاستشارات المهنية", "Yseer Professional Consulting")}
             >
               <BrandLogo language={language} isFooter />
@@ -1132,7 +1144,7 @@ export function SiteFooter() {
           <div className="footer-links">
             <h3>{tx(language, "روابط سريعة", "Quick links")}</h3>
             {navItems.slice(1).map((item) => (
-              <Link key={item.href} href={item.href} onClick={(event) => navigateToHomeSection(event, item.href)}>
+              <Link key={item.href} href={localizedHref(item.href, language)}>
                 {tx(language, item.label, item.labelEn)}
               </Link>
             ))}
@@ -1160,8 +1172,7 @@ export function SiteFooter() {
             <p>{tx(language, "8:00 ص – 4:00 م", "8:00 AM – 4:00 PM")}</p>
             <Link
               className="footer-contact-cta"
-              href="/#contact"
-              onClick={(event) => navigateToHomeSection(event, "/#contact")}
+              href={localizedHref("/تواصل-معنا", language)}
             >
               {tx(language, "اطلب عرض سعر", "Request a quote")}{" "}
               {language === "ar" ? <ArrowLeft size={16} /> : <ArrowRight size={16} />}

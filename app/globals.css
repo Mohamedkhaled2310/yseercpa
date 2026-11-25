@@ -42,6 +42,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .main-nav { display: flex; align-items: center; gap: clamp(14px, 2vw, 29px); color: #526159; font-size: 13px; font-weight: 600; }
 .main-nav > a:not(.mobile-nav-cta) { transition: color .2s; }
 .main-nav > a:hover { color: #023632; }
+.main-nav > a.is-active { color: #00a899 !important; font-weight: 700; }
+:root[data-theme="dark"] .main-nav > a.is-active { color: #00c0ae !important; }
 .header-cta, .footer-contact-cta { display: inline-flex; align-items: center; justify-content: center; gap: 15px; min-height: 44px; padding: 0 19px; border-radius: 7px; color: #fff; background: #023632; font-size: 13px; font-weight: 700; transition: background .2s, transform .2s; }
 .header-cta:hover, .footer-contact-cta:hover { background: #245448; transform: translateY(-1px); }
 .menu-toggle, .mobile-nav-cta { display: none; }
