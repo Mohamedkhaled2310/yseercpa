@@ -302,22 +302,6 @@ export function SiteHeader() {
           <BrandLogo language={language} />
         </Link>
 
-        {/* Social media icons on header as in screenshot */}
-        <div className="header-socials" aria-label={tx(language, "حسابات التواصل الاجتماعي", "Social Media Accounts")}>
-          {socialLinks.map(({ label, labelEn, href, icon: IconComponent }) => (
-            <a
-              key={label}
-              href={href}
-              aria-label={tx(language, label, labelEn)}
-              target="_blank"
-              rel="noreferrer"
-              className="social-pill"
-            >
-              <IconComponent size={15} />
-            </a>
-          ))}
-        </div>
-
         {/* Navigation links */}
         <nav
           className={open ? "main-nav is-open" : "main-nav"}
@@ -1122,6 +1106,21 @@ export function SiteFooter() {
                 "Your business success begins with clear numbers. Your trusted partner for sustainable growth."
               )}
             </p>
+            {/* Social media icons in footer */}
+            <div className="footer-socials" aria-label={tx(language, "حسابات التواصل الاجتماعي", "Social Media Accounts")}>
+              {socialLinks.map(({ label, labelEn, href, icon: IconComponent }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={tx(language, label, labelEn)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="footer-social-pill"
+                >
+                  <IconComponent size={16} />
+                </a>
+              ))}
+            </div>
           </div>
 
           <div className="footer-links">
@@ -1195,7 +1194,7 @@ export function SectionHeading({
       <span className="eyebrow">
         <i /> {eyebrow}
       </span>
-      <h2>{title}</h2>
+      <h2 className="section-heading-title">{title}</h2>
       {description && <p>{description}</p>}
     </div>
   )
@@ -1341,10 +1340,10 @@ export function PageHero({
         <span className="eyebrow">
           <i /> {eyebrow}
         </span>
-        <h1>{title}</h1>
-        <p>{description}</p>
+        <h1 className="page-hero-title">{title}</h1>
+        <p className="page-hero-desc">{description}</p>
         <div className="breadcrumb">
-          <Link href="/">{tx(language, "الرئيسية", "Home")}</Link>
+          <Link href={localizedHref("/", language)}>{tx(language, "الرئيسية", "Home")}</Link>
           {language === "ar" ? <ArrowLeft size={14} /> : <ArrowRight size={14} />}
           <span>{eyebrow}</span>
         </div>
