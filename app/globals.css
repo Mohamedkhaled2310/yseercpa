@@ -2369,3 +2369,410 @@ html[dir="ltr"] .btn-teal-primary:hover .btn-icon-shift {
   font-weight: 800 !important;
   letter-spacing: -0.02em !important;
 }
+
+/* =========================================================
+   Accreditation & Trust Strip
+   ========================================================= */
+.accreditation-strip {
+  padding: 75px 0 85px;
+  background-color: #f7faf9;
+  border-bottom: 1px solid #e7eeec;
+}
+
+.accreditation-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 48px;
+}
+
+.accreditation-title {
+  margin: 14px 0 10px;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  color: #023632;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+.accreditation-subtitle {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.85;
+  color: #526b68;
+}
+
+.accreditation-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.accreditation-card {
+  padding: 24px 22px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #dce8e7;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.accreditation-card:hover {
+  transform: translateY(-4px);
+  border-color: #00b7a6;
+  box-shadow: 0 12px 32px rgba(2, 54, 50, 0.08);
+}
+
+.accreditation-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.accreditation-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(0, 183, 166, 0.12);
+  color: #00a899;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+
+.accreditation-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #023632;
+  background: #e5f2f0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.accreditation-card-name {
+  margin: 18px 0 8px;
+  font-size: 15.5px;
+  font-weight: 800;
+  color: #023632;
+  line-height: 1.35;
+}
+
+.accreditation-card-desc {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: #687a78;
+}
+
+/* =========================================================
+   FAQ Section & Accordion
+   ========================================================= */
+.faq-section {
+  padding: 95px 0 105px;
+  background-color: #ffffff;
+}
+
+.faq-header-wrap {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 50px;
+}
+
+.faq-subtitle-text {
+  margin: 12px auto 0;
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: #687a78;
+}
+
+.faq-accordion-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.faq-item-card {
+  border: 1px solid #dce8e7;
+  border-radius: 12px;
+  background: #fbfdfc;
+  overflow: hidden;
+  transition: all 0.22s ease;
+}
+
+.faq-item-card.is-expanded {
+  border-color: #00b7a6;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(0, 183, 166, 0.08);
+}
+
+.faq-question-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: inherit;
+  transition: background 0.15s ease;
+}
+
+.faq-question-btn:hover {
+  background: rgba(0, 183, 166, 0.02);
+}
+
+.faq-question-text {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: #023632;
+  line-height: 1.45;
+  font-family: var(--font-arabic), "IBM Plex Sans Arabic", Arial, sans-serif;
+}
+
+.faq-icon-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e5f2f0;
+  color: #00a899;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  transition: transform 0.25s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.faq-icon-arrow.is-open {
+  transform: rotate(180deg);
+  background: #00a899;
+  color: #ffffff;
+}
+
+.faq-answer-content {
+  padding: 0 24px 22px;
+  border-top: 1px solid #f0f5f4;
+  padding-top: 16px;
+  animation: faq-fade-in 0.25s ease;
+}
+
+.faq-answer-content p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.95;
+  color: #526b68;
+}
+
+@keyframes faq-fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.faq-bottom-cta {
+  max-width: 900px;
+  margin: 50px auto 0;
+  padding: 30px 34px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #023632 0%, #084842 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  color: #ffffff;
+}
+
+.faq-bottom-cta-text h4 {
+  margin: 0 0 6px;
+  font-size: 19px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.faq-bottom-cta-text p {
+  margin: 0;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.6;
+}
+
+.faq-bottom-cta-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+
+.btn-faq-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 8px;
+  background: #25D366;
+  color: #ffffff !important;
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-faq-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+}
+
+.btn-faq-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 8px;
+  background: #00a899;
+  color: #ffffff !important;
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.btn-faq-contact:hover {
+  background: #008f82;
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   Responsive & Dark Mode for Accreditations and FAQ
+   ========================================================= */
+@media (max-width: 1000px) {
+  .accreditation-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .faq-bottom-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .faq-bottom-cta-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+  .btn-faq-whatsapp, .btn-faq-contact {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .accreditation-strip {
+    padding: 50px 0 60px;
+  }
+  .accreditation-grid {
+    grid-template-columns: 1fr;
+  }
+  .faq-section {
+    padding: 60px 0 70px;
+  }
+  .faq-question-btn {
+    padding: 18px 18px;
+    gap: 12px;
+  }
+  .faq-question-text {
+    font-size: 15px;
+  }
+  .faq-answer-content {
+    padding: 0 18px 18px;
+  }
+  .faq-bottom-cta {
+    padding: 24px 20px;
+  }
+}
+
+:root[data-theme="dark"] .accreditation-strip,
+[data-theme="dark"] .accreditation-strip {
+  background-color: #0b1716;
+  border-color: #1a2e2b;
+}
+
+:root[data-theme="dark"] .accreditation-title,
+[data-theme="dark"] .accreditation-title {
+  color: #e5f1ef;
+}
+
+:root[data-theme="dark"] .accreditation-subtitle,
+[data-theme="dark"] .accreditation-subtitle {
+  color: #a1b7b3;
+}
+
+:root[data-theme="dark"] .accreditation-card,
+[data-theme="dark"] .accreditation-card {
+  background: #132321;
+  border-color: #29413d;
+}
+
+:root[data-theme="dark"] .accreditation-card-name,
+[data-theme="dark"] .accreditation-card-name {
+  color: #e5f1ef;
+}
+
+:root[data-theme="dark"] .accreditation-card-desc,
+[data-theme="dark"] .accreditation-card-desc {
+  color: #a1b7b3;
+}
+
+:root[data-theme="dark"] .accreditation-badge,
+[data-theme="dark"] .accreditation-badge {
+  background: #183330;
+  color: #73d4c8;
+}
+
+:root[data-theme="dark"] .faq-section,
+[data-theme="dark"] .faq-section {
+  background-color: #0d1a18;
+}
+
+:root[data-theme="dark"] .faq-subtitle-text,
+[data-theme="dark"] .faq-subtitle-text {
+  color: #a1b7b3;
+}
+
+:root[data-theme="dark"] .faq-item-card,
+[data-theme="dark"] .faq-item-card {
+  background: #132321;
+  border-color: #29413d;
+}
+
+:root[data-theme="dark"] .faq-item-card.is-expanded,
+[data-theme="dark"] .faq-item-card.is-expanded {
+  border-color: #00b7a6;
+  background: #162b28;
+}
+
+:root[data-theme="dark"] .faq-question-text,
+[data-theme="dark"] .faq-question-text {
+  color: #e5f1ef;
+}
+
+:root[data-theme="dark"] .faq-answer-content,
+[data-theme="dark"] .faq-answer-content {
+  border-color: #1e3633;
+}
+
+:root[data-theme="dark"] .faq-answer-content p,
+[data-theme="dark"] .faq-answer-content p {
+  color: #b4d8d2;
+}
+
+:root[data-theme="dark"] .faq-icon-arrow,
+[data-theme="dark"] .faq-icon-arrow {
+  background: #183330;
+  color: #73d4c8;
+}
+
+:root[data-theme="dark"] .faq-bottom-cta,
+[data-theme="dark"] .faq-bottom-cta {
+  background: linear-gradient(135deg, #072421 0%, #103833 100%);
+  border: 1px solid #1e3c38;
+}
